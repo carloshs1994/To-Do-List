@@ -1,10 +1,11 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
+<h1 align="center">To-Do List</h1>
 
-# Project Name
+## About The Project
 
-> One paragraph statement about the project.
+> This is an app to store, display and remove task from your list. The main funtinality is adding, editing, deleting and drag and drop. This project has been built with the help of modern CSS3 and ES6. Build using webpack. Check the live demo to try
 
-![screenshot](./app_screenshot.png)
+![screenshot](./screenshot.png)
 
 Additional description about the project and its features.
 
@@ -21,43 +22,24 @@ Additional description about the project and its features.
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
-
-To get a local copy up and running follow these simple example steps.
-
-### Prerequisites
-
-### Setup
-
-### Install
-
-### Usage
-
-### Run tests
-
-### Deployment
-
-
+* You will not need additional instructions on installing Prerequisites.
+* In case you have node_modules on your folder Add them to .gitignore file before you a push.
 
 ## Authors
 
 👤 **Author1**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
-
-👤 **Author2**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@githubhandle](https://github.com/carloshs1994)
+- Twitter: [@twitterhandle]()
+- LinkedIn: [LinkedIn]()
 
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome!
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/NewFeature`)
+3. Commit your Changes (`git commit -m 'Add some NewFeature'`)
 
 Feel free to check the [issues page](../../issues/).
 
@@ -67,9 +49,8 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- Hat tip to Microverse
+- [Inspiration](https://www.youtube.com/watch?v=AcUd-_Yjjqg)
 
 ## 📝 License
 
