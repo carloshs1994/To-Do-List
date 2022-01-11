@@ -7,13 +7,6 @@
 
 ![screenshot](./screenshot.png)
 
-Additional description about the project and its features.
-
-## Built With
-
-- Javascript, HTML, CSS
-- Terminal, node, npm, webpack
-
 ### Prerequisites
 
     - node
