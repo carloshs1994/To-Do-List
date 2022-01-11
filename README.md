@@ -29,8 +29,8 @@ Additional description about the project and its features.
 
 👤 **Author1**
 
-- GitHub: [@githubhandle](https://github.com/carloshs1994)
-- Twitter: [@twitterhandle]()
+- GitHub: [@carloshs1994](https://github.com/carloshs1994)
+- Twitter: [@twitter]()
 - LinkedIn: [LinkedIn]()
 
 ## 🤝 Contributing
