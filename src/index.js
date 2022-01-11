@@ -1,7 +1,6 @@
-import _ from 'lodash';
 import './style.css';
 import Sync from './sync-solid.svg';
-import DotMenu from './ellipsis-v-solid.svg'
+import DotMenu from './ellipsis-v-solid.svg';
 import Enter from './left-arrow.png';
 
 class List {
@@ -13,6 +12,8 @@ class List {
     return this.listOfTasks.push(newTask);
   }
 }
+
+/* eslint max-classes-per-file: ["error", 2] */
 
 class Task {
   constructor(description, completed, index) {
@@ -43,12 +44,12 @@ const createTask = (input) => {
       <img src="${Enter}" alt="Enter">
     </li>
   `;
-  list.listOfTasks.forEach(task => {
+  list.listOfTasks.forEach((task) => {
     const li = document.createElement('li');
     // Lodash, now imported by this script
     li.innerHTML = `
-      <input type="checkbox" id="task" name="task-${task.index+1}">
-      <label for="task-${task.index+1}">${task.description}</label>
+      <input type="checkbox" id="task" name="task-${task.index + 1}">
+      <label for="task-${task.index + 1}">${task.description}</label>
       <img src="${DotMenu}" alt="Delete or Drag and drop">
     `;
     li.classList.add('hello');
@@ -59,7 +60,7 @@ const createTask = (input) => {
   `;
   lastLi.className = 'clear';
   placeholder.appendChild(lastLi);
-}
+};
 
 createTask(input1);
 createTask(input2);
