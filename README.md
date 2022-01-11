@@ -11,19 +11,36 @@ Additional description about the project and its features.
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
+- Javascript, HTML, CSS
+- Terminal, node, npm, webpack
 
-## Live Demo
+### Prerequisites
 
-[Live Demo Link](https://livedemo.com)
+    - node
 
+### Setup
 
-## Getting Started
+> Clone the repository to your local machine and run:
+```
+npm install
+npm init -y
+npm install --save-dev webpack
+npm install --save lodash
+npx webpack --config webpack.config.js
+npm install webpack webpack-cli --save-dev
+npm install --save-dev style-loader css-loader
+npm install --save-dev csv-loader xml-loader
+npm install --save-dev html-webpack-plugin
+npm install --save-dev webpack-dev-server
+```
 
-* You will not need additional instructions on installing Prerequisites.
-* In case you have node_modules on your folder Add them to .gitignore file before you a push.
+### Deployment
+
+ > run:
+ ```
+ npm run build
+ npm start
+ ```
 
 ## Authors
 
