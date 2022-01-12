@@ -51,7 +51,7 @@ function appendTaskToListAndUpdateLocalStorage() {
     task.addEventListener('click', (event) => {
       if (event.target.src === Trash) {
         // eslint-disable-next-line no-use-before-define
-        deleteSingleTask(parseInt(event.target.className));
+        deleteSingleTask(parseInt(event.target.className, 10));
       } else if (event.target.src === DotMenu) {
         event.target.src = Trash;
       }
