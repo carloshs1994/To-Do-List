@@ -45,7 +45,9 @@ li.hello img {
 
 input#enter-task {
   width: 90%;
+  height: 35px;
   border: none;
+  padding-left: 3px;
 }
 
 input::placeholder {
