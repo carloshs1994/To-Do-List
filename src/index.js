@@ -1,8 +1,9 @@
 import './style.css';
 import Sync from './sync-solid.svg';
 import DotMenu from './ellipsis-v-solid.svg';
-import Trash from './trash-alt-regular.svg'
+import Trash from './trash-alt-regular.svg';
 import Enter from './left-arrow.png';
+
 class Task {
   constructor(description, completed, index) {
     this.description = description;
@@ -11,16 +12,10 @@ class Task {
   }
 }
 const input = document.querySelector('#enter-task');
-let listOfTasks = [];
+const listOfTasks = [];
 
-document.getElementById("sync-icon").src = Sync;
-document.getElementById("enter-icon").src = Enter;
-
-document.querySelector('form').addEventListener('submit', (event) => {
-  event.preventDefault();
-  createTask(input.value);
-  input.value = '';
-});
+document.getElementById('sync-icon').src = Sync;
+document.getElementById('enter-icon').src = Enter;
 
 function addToLocalStorage(listOfTasks) {
   localStorage.setItem('To-Do-List', JSON.stringify(listOfTasks));
@@ -47,14 +42,15 @@ function appendTaskToListAndUpdateLocalStorage() {
   `;
   lastLi.className = 'clear';
   placeholder.appendChild(lastLi);
-  document.querySelectorAll('.hello').forEach(e => {
+  document.querySelectorAll('.hello').forEach((e) => {
     e.addEventListener('keyup', (event) => {
       listOfTasks[event.target.id].description = event.target.value;
     });
   });
-  document.querySelectorAll('li.hello img').forEach((task) => {
+  document.querySelectorAll('li.hello > img').forEach((task) => {
     task.addEventListener('click', (event) => {
       if (event.target.src === Trash) {
+        // eslint-disable-next-line no-use-before-define
         deleteSingleTask(parseInt(event.target.className));
       } else if (event.target.src === DotMenu) {
         event.target.src = Trash;
@@ -64,8 +60,8 @@ function appendTaskToListAndUpdateLocalStorage() {
 }
 
 function removeChildsFromList() {
-  document.querySelectorAll('.hello').forEach(e => e.remove());
-  document.querySelectorAll('.clear').forEach(e => e.remove());
+  document.querySelectorAll('.hello').forEach((e) => e.remove());
+  document.querySelectorAll('.clear').forEach((e) => e.remove());
 }
 
 function deleteSingleTask(indexToRemove) {
@@ -86,7 +82,7 @@ function createTask(input) {
   listOfTasks.push(task);
   removeChildsFromList();
   appendTaskToListAndUpdateLocalStorage();
-};
+}
 
 function getFromLocalStorage() {
   if (localStorage.length !== 0) {
@@ -98,5 +94,11 @@ function getFromLocalStorage() {
     appendTaskToListAndUpdateLocalStorage();
   }
 }
+
+document.querySelector('form').addEventListener('submit', (event) => {
+  event.preventDefault();
+  createTask(input.value);
+  input.value = '';
+});
 
 getFromLocalStorage();
