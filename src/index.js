@@ -22,10 +22,16 @@ document.querySelector('form').addEventListener('submit', (event) => {
   input.value = '';
 });
 
+function addToLocalStorage(listOfTasks) {
+  localStorage.setItem('To-Do-List', JSON.stringify(listOfTasks));
+}
+
 const placeholder = document.querySelector('ul.placeholder');
 
-function appendTaskToList() {
+function appendTaskToListAndUpdateLocalStorage() {
   const lastLi = document.createElement('li');
+  localStorage.clear();
+  addToLocalStorage(listOfTasks);
   listOfTasks.forEach((task) => {
     const li = document.createElement('li');
     li.innerHTML = `
@@ -69,12 +75,25 @@ function deleteSingleTask(indexToRemove) {
     }
   }
   removeChildsFromList();
-  appendTaskToList();
+  appendTaskToListAndUpdateLocalStorage();
 }
 
 function createTask(input) {
   const task = new Task(input, false, listOfTasks.length);
   listOfTasks.push(task);
   removeChildsFromList();
-  appendTaskToList();
+  appendTaskToListAndUpdateLocalStorage();
 };
+
+function getFromLocalStorage() {
+  if (localStorage.length !== 0) {
+    const tasksFromLocStg = JSON.parse(localStorage.getItem('To-Do-List'));
+    tasksFromLocStg.forEach((task) => {
+      listOfTasks.push(task);
+    });
+    removeChildsFromList();
+    appendTaskToListAndUpdateLocalStorage();
+  }
+}
+
+getFromLocalStorage();
