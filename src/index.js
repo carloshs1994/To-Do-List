@@ -74,6 +74,9 @@ function deleteSingleTask(indexToRemove) {
       listOfTasks.splice(i, 1);
     }
   }
+  listOfTasks.forEach((task, index) => {
+    listOfTasks[index].index = index;
+  });
   removeChildsFromList();
   appendTaskToListAndUpdateLocalStorage();
 }
