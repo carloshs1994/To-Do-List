@@ -1,20 +1,8 @@
 import './style.css';
 import Sync from './sync-solid.svg';
 import DotMenu from './ellipsis-v-solid.svg';
+import Trash from './trash-alt-regular.svg'
 import Enter from './left-arrow.png';
-
-class List {
-  constructor() {
-    this.listOfTasks = [];
-  }
-
-  addNewTask(newTask) {
-    return this.listOfTasks.push(newTask);
-  }
-}
-
-/* eslint max-classes-per-file: ["error", 2] */
-
 class Task {
   constructor(description, completed, index) {
     this.description = description;
@@ -22,35 +10,28 @@ class Task {
     this.index = index;
   }
 }
+const input = document.querySelector('#enter-task');
+let listOfTasks = [];
 
-const list = new List();
+document.getElementById("sync-icon").src = Sync;
+document.getElementById("enter-icon").src = Enter;
 
-const input1 = 'Run 1 km';
-const input2 = 'Run 2 km';
-const input3 = 'Run 3 km';
+document.querySelector('form').addEventListener('submit', (event) => {
+  event.preventDefault();
+  createTask(input.value);
+  input.value = '';
+});
 
-const createTask = (input) => {
-  const placeholder = document.querySelector('ul.placeholder');
-  const task = new Task(input, false, list.listOfTasks.length);
+const placeholder = document.querySelector('ul.placeholder');
+
+function appendTaskToList() {
   const lastLi = document.createElement('li');
-  list.addNewTask(task);
-  placeholder.innerHTML = `
-    <li class="hello">
-      <p>Today's To-Do</p>
-      <img src="${Sync}" alt="Sync">
-    </li>
-    <li class="hello">
-      <input id="enter-task" placeholder="Add to your list...">
-      <img src="${Enter}" alt="Enter">
-    </li>
-  `;
-  list.listOfTasks.forEach((task) => {
+  listOfTasks.forEach((task) => {
     const li = document.createElement('li');
-    // Lodash, now imported by this script
     li.innerHTML = `
       <input type="checkbox" id="task" name="task-${task.index + 1}">
-      <label for="task-${task.index + 1}">${task.description}</label>
-      <img src="${DotMenu}" alt="Delete or Drag and drop">
+      <input type="text" value="${task.description}" id="${task.index}" class="task-text">
+      <img class="${task.index}" src="${DotMenu}" alt="Delete or Drag and drop">
     `;
     li.classList.add('hello');
     placeholder.appendChild(li);
@@ -60,8 +41,40 @@ const createTask = (input) => {
   `;
   lastLi.className = 'clear';
   placeholder.appendChild(lastLi);
-};
+  document.querySelectorAll('.hello').forEach(e => {
+    e.addEventListener('keyup', (event) => {
+      listOfTasks[event.target.id].description = event.target.value;
+    });
+  });
+  document.querySelectorAll('li.hello img').forEach((task) => {
+    task.addEventListener('click', (event) => {
+      if (event.target.src === Trash) {
+        deleteSingleTask(parseInt(event.target.className));
+      } else if (event.target.src === DotMenu) {
+        event.target.src = Trash;
+      }
+    });
+  });
+}
 
-createTask(input1);
-createTask(input2);
-createTask(input3);
+function removeChildsFromList() {
+  document.querySelectorAll('.hello').forEach(e => e.remove());
+  document.querySelectorAll('.clear').forEach(e => e.remove());
+}
+
+function deleteSingleTask(indexToRemove) {
+  for (let i = 0; i < listOfTasks.length; i += 1) {
+    if (indexToRemove === listOfTasks[i].index) {
+      listOfTasks.splice(i, 1);
+    }
+  }
+  removeChildsFromList();
+  appendTaskToList();
+}
+
+function createTask(input) {
+  const task = new Task(input, false, listOfTasks.length);
+  listOfTasks.push(task);
+  removeChildsFromList();
+  appendTaskToList();
+};

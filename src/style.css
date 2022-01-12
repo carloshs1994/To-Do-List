@@ -21,7 +21,8 @@ ul {
   box-shadow: rgba(100, 100, 111, 0.2) 0.001px 7px 29px 0.001px;
 }
 
-.hello {
+li,
+form {
   background-color: #fff;
   width: calc(100% - 26px);
   height: 50px;
@@ -33,12 +34,26 @@ ul {
   gap: 5px;
 }
 
+form {
+  padding: 0;
+  width: 100%;
+  justify-content: space-between;
+}
+
 li.hello p {
   opacity: 0.7;
 }
 
-li.hello img {
+li button {
   height: 20%;
+  background: none;
+  border: none;
+}
+
+li img,
+li form button img,
+li.hello img {
+  height: 10px;
   margin-left: auto;
   opacity: 0.4;
 }
@@ -57,6 +72,14 @@ input::placeholder {
 input#task {
   outline: 2px solid #808080a8;
   outline-style: auto;
+}
+
+li.hello input.task-text {
+  width: 85%;
+  height: 35px;
+  border: none;
+  padding-left: 3px;
+  font-size: 18px;
 }
 
 .clear {
