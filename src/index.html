@@ -6,6 +6,17 @@
     <title>To-Do List</title>
 </head>
 <body>
-    <ul class="placeholder"></ul>
+    <ul class="placeholder">
+        <li>
+            <p>Today's To-Do</p>
+            <img id="sync-icon" src="./sync-solid.svg" alt="Sync">
+        </li>
+        <li>
+            <form id="form" class="form" action="#" method="post">
+                <input type="text" id="enter-task" placeholder="Add to your list..." required maxlength="100">
+                <button type="submit"><img id="enter-icon" src="./left-arrow.png" alt="Enter"></button>
+            </form>
+        </li>
+    </ul>
 </body>
 </html>
