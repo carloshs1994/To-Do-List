@@ -1,5 +1,5 @@
 export function clearCheckedTasks(listOfTasks) {
-  listOfTasks = listOfTasks.filter((task) => task.completed === false );
+  listOfTasks = listOfTasks.filter((task) => task.completed === false);
   listOfTasks.forEach((task, index) => {
     task.index = index;
   });

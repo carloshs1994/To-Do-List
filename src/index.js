@@ -5,7 +5,7 @@ import Trash from './trash-alt-regular.svg';
 import Enter from './left-arrow.png';
 import {
   clearCheckedTasks,
-  checkboxStatus
+  checkboxStatus,
 } from './checkbox-status.js';
 import {
   appendTaskToListAndUpdateLocalStorage,
