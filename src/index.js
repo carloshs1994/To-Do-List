@@ -3,6 +3,7 @@ import Sync from './sync-solid.svg';
 import DotMenu from './ellipsis-v-solid.svg';
 import Trash from './trash-alt-regular.svg';
 import Enter from './left-arrow.png';
+import { appendTaskToListAndUpdateLocalStorage, removeChildsFromList, deleteSingleTask } from './add-and-remove.js';
 
 class Task {
   constructor(description, completed, index) {
@@ -17,71 +18,22 @@ const listOfTasks = [];
 document.getElementById('sync-icon').src = Sync;
 document.getElementById('enter-icon').src = Enter;
 
-function addToLocalStorage(listOfTasks) {
-  localStorage.setItem('To-Do-List', JSON.stringify(listOfTasks));
-}
-
-const placeholder = document.querySelector('ul.placeholder');
-
-function appendTaskToListAndUpdateLocalStorage() {
-  const lastLi = document.createElement('li');
-  localStorage.clear();
-  addToLocalStorage(listOfTasks);
-  listOfTasks.forEach((task) => {
-    const li = document.createElement('li');
-    li.innerHTML = `
-      <input type="checkbox" id="task" name="task-${task.index + 1}">
-      <input type="text" value="${task.description}" id="${task.index}" class="task-text">
-      <img class="${task.index}" src="${DotMenu}" alt="Delete or Drag and drop">
-    `;
-    li.classList.add('hello');
-    placeholder.appendChild(li);
-  });
-  lastLi.innerHTML = `
-    <a href="#">Clear all completed</a>
-  `;
-  lastLi.className = 'clear';
-  placeholder.appendChild(lastLi);
+function addEventsToTasks() {
   document.querySelectorAll('.hello').forEach((e) => {
     e.addEventListener('keyup', (event) => {
       listOfTasks[event.target.id].description = event.target.value;
     });
   });
-  document.querySelectorAll('li.hello > img').forEach((task) => {
+  document.querySelectorAll('li.hello img').forEach((task) => {
     task.addEventListener('click', (event) => {
       if (event.target.src === Trash) {
-        // eslint-disable-next-line no-use-before-define
-        deleteSingleTask(parseInt(event.target.className, 10));
+        deleteSingleTask(parseInt(event.target.className, 10), listOfTasks, DotMenu, Trash);
+        addEventsToTasks();
       } else if (event.target.src === DotMenu) {
         event.target.src = Trash;
       }
     });
   });
-}
-
-function removeChildsFromList() {
-  document.querySelectorAll('.hello').forEach((e) => e.remove());
-  document.querySelectorAll('.clear').forEach((e) => e.remove());
-}
-
-function deleteSingleTask(indexToRemove) {
-  for (let i = 0; i < listOfTasks.length; i += 1) {
-    if (indexToRemove === listOfTasks[i].index) {
-      listOfTasks.splice(i, 1);
-    }
-  }
-  listOfTasks.forEach((task, index) => {
-    listOfTasks[index].index = index;
-  });
-  removeChildsFromList();
-  appendTaskToListAndUpdateLocalStorage();
-}
-
-function createTask(input) {
-  const task = new Task(input, false, listOfTasks.length);
-  listOfTasks.push(task);
-  removeChildsFromList();
-  appendTaskToListAndUpdateLocalStorage();
 }
 
 function getFromLocalStorage() {
@@ -91,9 +43,19 @@ function getFromLocalStorage() {
       listOfTasks.push(task);
     });
     removeChildsFromList();
-    appendTaskToListAndUpdateLocalStorage();
+    appendTaskToListAndUpdateLocalStorage(DotMenu, Trash, listOfTasks);
+    addEventsToTasks();
   }
 }
+
+function createTask(input) {
+  const task = new Task(input, false, listOfTasks.length);
+  listOfTasks.push(task);
+  removeChildsFromList();
+  appendTaskToListAndUpdateLocalStorage(DotMenu, Trash, listOfTasks);
+  addEventsToTasks();
+}
+
 
 document.querySelector('form').addEventListener('submit', (event) => {
   event.preventDefault();
