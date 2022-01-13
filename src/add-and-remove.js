@@ -35,7 +35,6 @@ export function deleteSingleTask(indexToRemove, listOfTasks, DotMenu, Trash) {
       listOfTasks.splice(i, 1);
     }
   }
-  console.log(listOfTasks)
   listOfTasks.forEach((task, index) => {
     console.log(task);
     task.index = index;
