@@ -56,7 +56,6 @@ function createTask(input) {
   addEventsToTasks();
 }
 
-
 document.querySelector('form').addEventListener('submit', (event) => {
   event.preventDefault();
   createTask(input.value);
