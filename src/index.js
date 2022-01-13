@@ -3,7 +3,8 @@ import Sync from './sync-solid.svg';
 import DotMenu from './ellipsis-v-solid.svg';
 import Trash from './trash-alt-regular.svg';
 import Enter from './left-arrow.png';
-import { appendTaskToListAndUpdateLocalStorage, removeChildsFromList, deleteSingleTask } from './add-and-remove.js';
+import { clearCheckedTasks, checkboxStatus } from './checkbox-status.js';
+import { appendTaskToListAndUpdateLocalStorage, removeChildsFromList, deleteSingleTask, addToLocalStorage, } from './add-and-remove.js';
 
 class Task {
   constructor(description, completed, index) {
@@ -13,21 +14,36 @@ class Task {
   }
 }
 const input = document.querySelector('#enter-task');
-const listOfTasks = [];
+let listOfTasks = [];
 
 document.getElementById('sync-icon').src = Sync;
 document.getElementById('enter-icon').src = Enter;
 
 function addEventsToTasks() {
+  document.querySelector('.clear').addEventListener('click', (e) => {
+    listOfTasks = clearCheckedTasks(listOfTasks);
+    removeChildsFromList();
+    appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks);
+    addEventsToTasks();
+  });
+  document.querySelectorAll('#task').forEach((task) => {
+    task.addEventListener('change', (event) => {
+      listOfTasks = checkboxStatus(event, listOfTasks);
+      localStorage.clear();
+      addToLocalStorage(listOfTasks);
+    });
+  });
   document.querySelectorAll('.hello').forEach((e) => {
     e.addEventListener('keyup', (event) => {
       listOfTasks[event.target.id].description = event.target.value;
+      localStorage.clear();
+      addToLocalStorage(listOfTasks);
     });
   });
   document.querySelectorAll('li.hello img').forEach((task) => {
     task.addEventListener('click', (event) => {
       if (event.target.src === Trash) {
-        deleteSingleTask(parseInt(event.target.className, 10), listOfTasks, DotMenu, Trash);
+        deleteSingleTask(parseInt(event.target.className, 10), listOfTasks, DotMenu);
         addEventsToTasks();
       } else if (event.target.src === DotMenu) {
         event.target.src = Trash;
@@ -43,7 +59,7 @@ function getFromLocalStorage() {
       listOfTasks.push(task);
     });
     removeChildsFromList();
-    appendTaskToListAndUpdateLocalStorage(DotMenu, Trash, listOfTasks);
+    appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks);
     addEventsToTasks();
   }
 }
@@ -52,7 +68,7 @@ function createTask(input) {
   const task = new Task(input, false, listOfTasks.length);
   listOfTasks.push(task);
   removeChildsFromList();
-  appendTaskToListAndUpdateLocalStorage(DotMenu, Trash, listOfTasks);
+  appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks);
   addEventsToTasks();
 }
 

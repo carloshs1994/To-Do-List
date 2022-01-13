@@ -1,4 +1,4 @@
-function addToLocalStorage(listOfTasks) {
+export function addToLocalStorage(listOfTasks) {
   localStorage.setItem('To-Do-List', JSON.stringify(listOfTasks));
 }
 
@@ -7,7 +7,7 @@ export function removeChildsFromList() {
   document.querySelectorAll('.clear').forEach((e) => e.remove());
 }
 
-export function appendTaskToListAndUpdateLocalStorage(DotMenu, Trash, listOfTasks) {
+export function appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks) {
   const placeholder = document.querySelector('ul.placeholder');
   const lastLi = document.createElement('li');
   localStorage.clear();
@@ -16,11 +16,15 @@ export function appendTaskToListAndUpdateLocalStorage(DotMenu, Trash, listOfTask
     const li = document.createElement('li');
     li.innerHTML = `
       <input type="checkbox" id="task" name="task-${task.index + 1}">
-      <input type="text" value="${task.description}" id="${task.index}" class="task-text">
+      <input type="text" value="${task.description}" id="${task.index}" class="task-text test">
       <img class="${task.index}" src="${DotMenu}" alt="Delete or Drag and drop">
     `;
     li.classList.add('hello');
     placeholder.appendChild(li);
+    if (task.completed && (li.children[1].className !== 'task-text checked-task')) {
+      li.children[0].checked = true;
+      li.children[1].classList.add('checked-task');
+    }
   });
   lastLi.innerHTML = `
     <a href="#">Clear all completed</a>
@@ -29,16 +33,15 @@ export function appendTaskToListAndUpdateLocalStorage(DotMenu, Trash, listOfTask
   placeholder.appendChild(lastLi);
 }
 
-export function deleteSingleTask(indexToRemove, listOfTasks, DotMenu, Trash) {
+export function deleteSingleTask(indexToRemove, listOfTasks, DotMenu) {
   for (let i = 0; i < listOfTasks.length; i += 1) {
     if (indexToRemove === listOfTasks[i].index) {
       listOfTasks.splice(i, 1);
     }
   }
   listOfTasks.forEach((task, index) => {
-    console.log(task);
     task.index = index;
   });
   removeChildsFromList();
-  appendTaskToListAndUpdateLocalStorage(DotMenu, Trash, listOfTasks);
+  appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks);
 }
