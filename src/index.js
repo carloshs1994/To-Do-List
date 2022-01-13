@@ -3,8 +3,16 @@ import Sync from './sync-solid.svg';
 import DotMenu from './ellipsis-v-solid.svg';
 import Trash from './trash-alt-regular.svg';
 import Enter from './left-arrow.png';
-import { clearCheckedTasks, checkboxStatus } from './checkbox-status.js';
-import { appendTaskToListAndUpdateLocalStorage, removeChildsFromList, deleteSingleTask, addToLocalStorage, } from './add-and-remove.js';
+import {
+  clearCheckedTasks,
+  checkboxStatus
+} from './checkbox-status.js';
+import {
+  appendTaskToListAndUpdateLocalStorage,
+  removeChildsFromList,
+  deleteSingleTask,
+  addToLocalStorage,
+} from './add-and-remove.js';
 
 class Task {
   constructor(description, completed, index) {
@@ -20,7 +28,7 @@ document.getElementById('sync-icon').src = Sync;
 document.getElementById('enter-icon').src = Enter;
 
 function addEventsToTasks() {
-  document.querySelector('.clear').addEventListener('click', (e) => {
+  document.querySelector('.clear').addEventListener('click', () => {
     listOfTasks = clearCheckedTasks(listOfTasks);
     removeChildsFromList();
     appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks);
