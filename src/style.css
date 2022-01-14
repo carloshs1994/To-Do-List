@@ -100,3 +100,8 @@ li.clear a:hover {
   color: #000;
   text-decoration: underline;
 }
+
+.checked-task {
+  text-decoration: line-through;
+  color: #808080a8;
+}
