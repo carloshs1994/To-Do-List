@@ -30,8 +30,8 @@ export default function dragAndDrop(Task, listOfTasks) {
       const box = child.getBoundingClientRect();
       const offset = (event.clientY - box.top - 25);
       if (offset < 0 && offset > closest.offset) {
-        return { 
-          offset: offset,
+        return {
+          offset,
           element: child,
         };
       }
