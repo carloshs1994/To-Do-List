@@ -13,7 +13,7 @@ import {
   deleteSingleTask,
   addToLocalStorage,
 } from './add-and-remove.js';
-import { dragAndDrop } from './drag-and-drop.js'
+import dragAndDrop from './drag-and-drop.js';
 
 class Task {
   constructor(description, completed, index) {
