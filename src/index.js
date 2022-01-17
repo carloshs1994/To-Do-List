@@ -13,6 +13,7 @@ import {
   deleteSingleTask,
   addToLocalStorage,
 } from './add-and-remove.js';
+import { dragAndDrop } from './drag-and-drop.js'
 
 class Task {
   constructor(description, completed, index) {
@@ -28,6 +29,7 @@ document.getElementById('sync-icon').src = Sync;
 document.getElementById('enter-icon').src = Enter;
 
 function addEventsToTasks() {
+  dragAndDrop(Task, listOfTasks);
   document.querySelector('.clear').addEventListener('click', () => {
     listOfTasks = clearCheckedTasks(listOfTasks);
     removeChildsFromList();

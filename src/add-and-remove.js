@@ -15,11 +15,12 @@ export function appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks) {
   listOfTasks.forEach((task) => {
     const li = document.createElement('li');
     li.innerHTML = `
-      <input type="checkbox" id="task" name="task-${task.index + 1}">
-      <input type="text" value="${task.description}" id="${task.index}" class="task-text test">
+      <input type="checkbox" id="task">
+      <input type="text" value="${task.description}" id="${task.index}" class="task-text">
       <img class="${task.index}" src="${DotMenu}" alt="Delete or Drag and drop">
     `;
     li.classList.add('hello');
+    li.draggable = true;
     placeholder.appendChild(li);
     if (task.completed && (li.children[1].className !== 'task-text checked-task')) {
       li.children[0].checked = true;
