@@ -7,6 +7,10 @@
 
 ![screenshot](./screenshot.png)
 
+### Check it out
+
+[Live Demo](https://carloshs1994.github.io/To-Do-List/dist/)
+
 ### Prerequisites
 
     - node
