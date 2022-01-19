@@ -23,6 +23,7 @@ function appendTasks(listOfTasks, DotMenu, placeholder) {
       li.children[1].classList.add('checked-task');
     }
   });
+  return placeholder;
 }
 
 export function appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks) {
