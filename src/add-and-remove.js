@@ -7,11 +7,7 @@ export function removeChildsFromList() {
   document.querySelectorAll('.clear').forEach((e) => e.remove());
 }
 
-export function appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks) {
-  const placeholder = document.querySelector('ul.placeholder');
-  const lastLi = document.createElement('li');
-  localStorage.clear();
-  addToLocalStorage(listOfTasks);
+function appendTasks(listOfTasks, DotMenu, placeholder) {
   listOfTasks.forEach((task) => {
     const li = document.createElement('li');
     li.innerHTML = `
@@ -27,6 +23,14 @@ export function appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks) {
       li.children[1].classList.add('checked-task');
     }
   });
+}
+
+export function appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks) {
+  const placeholder = document.querySelector('ul.placeholder');
+  const lastLi = document.createElement('li');
+  localStorage.clear();
+  addToLocalStorage(listOfTasks);
+  appendTasks(listOfTasks, DotMenu, placeholder);
   lastLi.innerHTML = `
     <a href="#">Clear all completed</a>
   `;
@@ -46,3 +50,5 @@ export function deleteSingleTask(indexToRemove, listOfTasks, DotMenu) {
   removeChildsFromList();
   appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks);
 }
+
+module.exports = appendTasks;

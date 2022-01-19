@@ -92,3 +92,5 @@ document.querySelector('form').addEventListener('submit', (event) => {
 });
 
 getFromLocalStorage();
+
+module.exports = createTask;
