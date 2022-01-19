@@ -45,6 +45,9 @@ function addEventsToTasks() {
   });
   document.querySelectorAll('.hello').forEach((e) => {
     e.addEventListener('keyup', (event) => {
+      if (event.keyCode === 13) {
+        event.target.parentElement.children[2].src = DotMenu;
+      }
       listOfTasks[event.target.id].description = event.target.value;
       localStorage.clear();
       addToLocalStorage(listOfTasks);
