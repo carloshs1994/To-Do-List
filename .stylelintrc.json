@@ -9,7 +9,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
-  "extends": ["airbnb-base", "stylelint-config-standard"],
+  "extends": ["airbnb-base"],
   "rules": {
     "at-rule-no-unknown": null,
     "scss/at-rule-no-unknown": true,
