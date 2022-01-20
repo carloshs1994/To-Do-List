@@ -55,5 +55,5 @@ export {
   appendTasks,
   removeChildsFromList,
   appendTaskToListAndUpdateLocalStorage,
-  deleteSingleTask
-};
+  deleteSingleTask,
+}
