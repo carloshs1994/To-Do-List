@@ -6,6 +6,7 @@ import Enter from './left-arrow.png';
 import {
   clearCheckedTasks,
   checkboxStatus,
+  updateListArray,
 } from './checkbox-status.js';
 import {
   appendTaskToListAndUpdateLocalStorage,
@@ -45,10 +46,8 @@ function addEventsToTasks() {
   });
   document.querySelectorAll('.hello').forEach((e) => {
     e.addEventListener('keyup', (event) => {
-      if (event.keyCode === 13) {
-        event.target.parentElement.children[2].src = DotMenu;
-      }
-      listOfTasks[event.target.id].description = event.target.value;
+      console.log(event);
+      updateListArray(DotMenu, event, listOfTasks);
       localStorage.clear();
       addToLocalStorage(listOfTasks);
     });

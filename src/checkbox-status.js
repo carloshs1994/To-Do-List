@@ -1,4 +1,4 @@
-export function clearCheckedTasks(listOfTasks) {
+function clearCheckedTasks(listOfTasks) {
   listOfTasks = listOfTasks.filter((task) => task.completed === false);
   listOfTasks.forEach((task, index) => {
     task.index = index;
@@ -6,7 +6,7 @@ export function clearCheckedTasks(listOfTasks) {
   return listOfTasks;
 }
 
-export function checkboxStatus(event, listOfTasks) {
+function checkboxStatus(event, listOfTasks) {
   event.target.parentNode.children[1].classList.toggle('checked-task');
   if (event.target.checked) {
     listOfTasks[event.target.parentNode.children[1].id].completed = true;
@@ -15,3 +15,16 @@ export function checkboxStatus(event, listOfTasks) {
   }
   return listOfTasks;
 }
+
+function updateListArray(DotMenu, event, listOfTasks) {
+  if (event.keyCode === 13) {
+    event.target.parentElement.children[2].src = DotMenu;
+  }
+  listOfTasks[event.target.id].description = event.target.value;
+}
+
+export {
+  clearCheckedTasks,
+  checkboxStatus,
+  updateListArray,
+};
