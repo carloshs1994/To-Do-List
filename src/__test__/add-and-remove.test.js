@@ -41,7 +41,6 @@ describe('add & remove', () => {
     </ul>
   </div>
   `;
-
     deleteSingleTask(0, listOfTask, DotMenu);
     const list = document.querySelectorAll('ul.placeholder li');
     expect(list).toHaveLength(0);
