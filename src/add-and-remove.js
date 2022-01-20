@@ -48,7 +48,7 @@ function deleteSingleTask(indexToRemove, listOfTasks, DotMenu) {
     task.index = index;
   });
   removeChildsFromList();
-  appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks);
+  // appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks);
 }
 
 export { addToLocalStorage, appendTasks, removeChildsFromList, appendTaskToListAndUpdateLocalStorage, deleteSingleTask };

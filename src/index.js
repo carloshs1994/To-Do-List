@@ -57,6 +57,7 @@ function addEventsToTasks() {
     task.addEventListener('click', (event) => {
       if (event.target.src === Trash) {
         deleteSingleTask(parseInt(event.target.className, 10), listOfTasks, DotMenu);
+        appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks);
         addEventsToTasks();
       } else if (event.target.src === DotMenu) {
         event.target.src = Trash;
