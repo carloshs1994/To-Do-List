@@ -1,8 +1,8 @@
-export function addToLocalStorage(listOfTasks) {
+function addToLocalStorage(listOfTasks) {
   localStorage.setItem('To-Do-List', JSON.stringify(listOfTasks));
 }
 
-export function removeChildsFromList() {
+function removeChildsFromList() {
   document.querySelectorAll('.hello').forEach((e) => e.remove());
   document.querySelectorAll('.clear').forEach((e) => e.remove());
 }
@@ -23,10 +23,9 @@ function appendTasks(listOfTasks, DotMenu, placeholder) {
       li.children[1].classList.add('checked-task');
     }
   });
-  return placeholder;
 }
 
-export function appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks) {
+function appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks) {
   const placeholder = document.querySelector('ul.placeholder');
   const lastLi = document.createElement('li');
   localStorage.clear();
@@ -39,7 +38,7 @@ export function appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks) {
   placeholder.appendChild(lastLi);
 }
 
-export function deleteSingleTask(indexToRemove, listOfTasks, DotMenu) {
+function deleteSingleTask(indexToRemove, listOfTasks, DotMenu) {
   for (let i = 0; i < listOfTasks.length; i += 1) {
     if (indexToRemove === listOfTasks[i].index) {
       listOfTasks.splice(i, 1);
@@ -52,4 +51,4 @@ export function deleteSingleTask(indexToRemove, listOfTasks, DotMenu) {
   appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks);
 }
 
-module.exports = appendTasks;
+export { addToLocalStorage, appendTasks, removeChildsFromList, appendTaskToListAndUpdateLocalStorage, deleteSingleTask };

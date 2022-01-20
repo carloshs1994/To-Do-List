@@ -1,8 +1,4 @@
-const appendTasks = require('../add-and-remove.js');
-
-// test('should return the same String but with the first character capitalized.', () => {
-//   expect(capitalize('carlos')).toBe('Carlos');
-// });
+import { appendTasks } from '../add-and-remove.js';
 
 test('Add one new item to the list', () => {
   const DotMenu = './ellipsis-v-solid.svg';
