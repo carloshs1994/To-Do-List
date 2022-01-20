@@ -56,4 +56,4 @@ export {
   removeChildsFromList,
   appendTaskToListAndUpdateLocalStorage,
   deleteSingleTask,
-}
+};
