@@ -38,7 +38,7 @@ function appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks) {
   placeholder.appendChild(lastLi);
 }
 
-function deleteSingleTask(indexToRemove, listOfTasks, DotMenu) {
+function deleteSingleTask(indexToRemove, listOfTasks) {
   for (let i = 0; i < listOfTasks.length; i += 1) {
     if (indexToRemove === listOfTasks[i].index) {
       listOfTasks.splice(i, 1);
@@ -48,7 +48,12 @@ function deleteSingleTask(indexToRemove, listOfTasks, DotMenu) {
     task.index = index;
   });
   removeChildsFromList();
-  // appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks);
 }
 
-export { addToLocalStorage, appendTasks, removeChildsFromList, appendTaskToListAndUpdateLocalStorage, deleteSingleTask };
+export {
+  addToLocalStorage,
+  appendTasks,
+  removeChildsFromList,
+  appendTaskToListAndUpdateLocalStorage,
+  deleteSingleTask
+};
