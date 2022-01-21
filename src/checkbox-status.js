@@ -7,7 +7,6 @@ function clearCheckedTasks(listOfTasks) {
 }
 
 function checkboxStatus(event, listOfTasks) {
-  event.target.parentNode.children[1].classList.toggle('checked-task');
   if (event.target.checked) {
     listOfTasks[event.target.parentNode.children[1].id].completed = true;
   } else if (!event.target.checked) {

@@ -39,6 +39,7 @@ function addEventsToTasks() {
   });
   document.querySelectorAll('#task').forEach((task) => {
     task.addEventListener('change', (event) => {
+      event.target.parentNode.children[1].classList.toggle('checked-task');
       listOfTasks = checkboxStatus(event, listOfTasks);
       localStorage.clear();
       addToLocalStorage(listOfTasks);
