@@ -6,6 +6,7 @@ import Enter from './left-arrow.png';
 import {
   clearCheckedTasks,
   checkboxStatus,
+  updateListArray,
 } from './checkbox-status.js';
 import {
   appendTaskToListAndUpdateLocalStorage,
@@ -38,6 +39,7 @@ function addEventsToTasks() {
   });
   document.querySelectorAll('#task').forEach((task) => {
     task.addEventListener('change', (event) => {
+      event.target.parentNode.children[1].classList.toggle('checked-task');
       listOfTasks = checkboxStatus(event, listOfTasks);
       localStorage.clear();
       addToLocalStorage(listOfTasks);
@@ -45,7 +47,8 @@ function addEventsToTasks() {
   });
   document.querySelectorAll('.hello').forEach((e) => {
     e.addEventListener('keyup', (event) => {
-      listOfTasks[event.target.id].description = event.target.value;
+      console.log(event);
+      updateListArray(DotMenu, event, listOfTasks);
       localStorage.clear();
       addToLocalStorage(listOfTasks);
     });
@@ -54,6 +57,7 @@ function addEventsToTasks() {
     task.addEventListener('click', (event) => {
       if (event.target.src === Trash) {
         deleteSingleTask(parseInt(event.target.className, 10), listOfTasks, DotMenu);
+        appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks);
         addEventsToTasks();
       } else if (event.target.src === DotMenu) {
         event.target.src = Trash;
@@ -89,3 +93,5 @@ document.querySelector('form').addEventListener('submit', (event) => {
 });
 
 getFromLocalStorage();
+
+module.exports = createTask;

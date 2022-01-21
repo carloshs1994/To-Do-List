@@ -1,17 +1,13 @@
-export function addToLocalStorage(listOfTasks) {
+function addToLocalStorage(listOfTasks) {
   localStorage.setItem('To-Do-List', JSON.stringify(listOfTasks));
 }
 
-export function removeChildsFromList() {
+function removeChildsFromList() {
   document.querySelectorAll('.hello').forEach((e) => e.remove());
   document.querySelectorAll('.clear').forEach((e) => e.remove());
 }
 
-export function appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks) {
-  const placeholder = document.querySelector('ul.placeholder');
-  const lastLi = document.createElement('li');
-  localStorage.clear();
-  addToLocalStorage(listOfTasks);
+function appendTasks(listOfTasks, DotMenu, placeholder) {
   listOfTasks.forEach((task) => {
     const li = document.createElement('li');
     li.innerHTML = `
@@ -27,6 +23,14 @@ export function appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks) {
       li.children[1].classList.add('checked-task');
     }
   });
+}
+
+function appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks) {
+  const placeholder = document.querySelector('ul.placeholder');
+  const lastLi = document.createElement('li');
+  localStorage.clear();
+  addToLocalStorage(listOfTasks);
+  appendTasks(listOfTasks, DotMenu, placeholder);
   lastLi.innerHTML = `
     <a href="#">Clear all completed</a>
   `;
@@ -34,7 +38,7 @@ export function appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks) {
   placeholder.appendChild(lastLi);
 }
 
-export function deleteSingleTask(indexToRemove, listOfTasks, DotMenu) {
+function deleteSingleTask(indexToRemove, listOfTasks) {
   for (let i = 0; i < listOfTasks.length; i += 1) {
     if (indexToRemove === listOfTasks[i].index) {
       listOfTasks.splice(i, 1);
@@ -44,5 +48,12 @@ export function deleteSingleTask(indexToRemove, listOfTasks, DotMenu) {
     task.index = index;
   });
   removeChildsFromList();
-  appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks);
 }
+
+export {
+  addToLocalStorage,
+  appendTasks,
+  removeChildsFromList,
+  appendTaskToListAndUpdateLocalStorage,
+  deleteSingleTask,
+};
