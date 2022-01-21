@@ -41,10 +41,10 @@ npm install --save-dev webpack-dev-server
 
 ## Authors
 
-👤 **Author1**
+👤 **Carlos Herver Solano**
 
 - GitHub: [@carloshs1994](https://github.com/carloshs1994)
-- Twitter: [@twitter]()
+- Twitter: [@hscarlos_](https://twitter.com/hscarlos_)
 - LinkedIn: [LinkedIn]()
 
 ## 🤝 Contributing
