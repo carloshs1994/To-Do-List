@@ -24,9 +24,7 @@ function updateListArray(DotMenu, event, listOfTasks) {
     p.className = 'task-text';
     p.id = event.target.id;
     event.target.remove();
-    console.log('Before inserting: ', li, p);
     li.insertBefore(p, li.children[1]);
-    console.log('After inserting: ', li, p);
   }
   listOfTasks[event.target.id].description = event.target.value;
 }
