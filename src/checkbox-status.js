@@ -18,6 +18,13 @@ function checkboxStatus(event, listOfTasks) {
 function updateListArray(DotMenu, event, listOfTasks) {
   if (event.keyCode === 13) {
     event.target.parentElement.children[2].src = DotMenu;
+    const li = event.target.parentNode;
+    const p = document.createElement('p');
+    p.innerText = event.target.value;
+    p.className = 'task-text';
+    p.id = event.target.id;
+    event.target.remove();
+    li.insertBefore(p, li.children[1]);
   }
   listOfTasks[event.target.id].description = event.target.value;
 }

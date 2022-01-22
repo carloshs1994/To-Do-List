@@ -47,7 +47,6 @@ function addEventsToTasks() {
   });
   document.querySelectorAll('.hello').forEach((e) => {
     e.addEventListener('keyup', (event) => {
-      console.log(event);
       updateListArray(DotMenu, event, listOfTasks);
       localStorage.clear();
       addToLocalStorage(listOfTasks);
@@ -60,7 +59,15 @@ function addEventsToTasks() {
         appendTaskToListAndUpdateLocalStorage(DotMenu, listOfTasks);
         addEventsToTasks();
       } else if (event.target.src === DotMenu) {
+        const li = event.target.parentNode;
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = event.target.parentNode.children[1].innerText;
+        input.className = 'task-text';
+        input.id = event.target.parentNode.children[1].id;
         event.target.src = Trash;
+        event.target.parentNode.children[1].remove();
+        li.insertBefore(input, event.target.parentNode.children[1]);
       }
     });
   });
