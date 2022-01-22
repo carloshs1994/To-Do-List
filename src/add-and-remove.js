@@ -12,7 +12,7 @@ function appendTasks(listOfTasks, DotMenu, placeholder) {
     const li = document.createElement('li');
     li.innerHTML = `
       <input type="checkbox" id="task">
-      <input type="text" value="${task.description}" id="${task.index}" class="task-text">
+      <p id="${task.index}" class="task-text">${task.description}</p>
       <img class="${task.index}" src="${DotMenu}" alt="Delete or Drag and drop">
     `;
     li.classList.add('hello');
